@@ -122,17 +122,19 @@ export default function evaluation() {
                 alignItems: 'center' // Centers the 800px column on the screen
             }}>
                 
-                {/* 1. SCHOOL HEADER (Fixed to 800px) */}
+                {/*SCHOOL HEADER (Fixed to 800px) */}
                 <Paper elevation={6} sx={{ 
-                    p: 3, 
+                    p: { xs: 1.5, sm: 3 },
                     mb: 4, 
                     display: 'flex', 
                     alignItems: 'center', 
-                    gap: 3, 
+                    gap: { xs: 1.5, sm: 3 },
                     borderLeft: '6px solid', 
                     borderColor: 'primary.main',
                     maxWidth: '800px', // MATCHING WIDTH
-                    width: '100%' 
+                    width: '100%',
+                    mx: 'auto',
+                    boxSizing: 'border-box'
                 }}>
                     <img src={schoolLogo} alt="Logo" style={{ height: '80px', borderRadius: '50%' }} />
                     <Box>
@@ -172,11 +174,37 @@ export default function evaluation() {
 
                     {/* Reset Button */}
                     {(selectedCourse || selectedYear || selectedSection) && (
-                        <Button onClick={handleReset} startIcon={<RestartAltIcon />} sx={{ mt: 1, textTransform: 'none' }}>
+                        <Button onClick={handleReset} startIcon={<RestartAltIcon />} sx={{ mt: 1, textTransform: 'none', color: '#60a5fa', '&:hover': {
+                            color: '#93c5fd', // Even lighter on hover
+                            bgcolor: 'rgba(255, 255, 255, 0.05)' 
+                        } }}>
                             Clear all filters
                         </Button>
                     )}
                 </Box>
+
+
+                {/* Status Messages */}
+                {!selectedSection && (
+                    <Box sx={{ maxWidth: '800px', width: '100%' }}>
+                        <Alert variant="outlined" severity="info" sx={{ borderStyle: 'dashed', borderWidth: 2 }}>
+                            Selection Required: Please choose your <strong>Course</strong>, <strong>Year</strong>, and <strong>Section</strong>.
+                        </Alert>
+                    </Box>
+                )}
+
+                {/* SEPERATE LINE */}
+                <Box 
+                    sx={{ 
+                        width: '100%', 
+                        height: '1px', 
+                        // Using a gradient makes it fade at the edges, which looks very "Pro"
+                        background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%)',
+                        my: 1,
+                        maxWidth: '800px',
+                        mx: 'auto'
+                    }} 
+                />
 
                 {/* TEACHER LIST SECTION */}
                 <Box sx={{ 
@@ -195,14 +223,6 @@ export default function evaluation() {
                     </Grid>
                 </Box>
 
-                {/* Status Messages */}
-                {!selectedSection && (
-                    <Box sx={{ maxWidth: '800px', width: '100%' }}>
-                        <Alert variant="outlined" severity="info" sx={{ borderStyle: 'dashed', borderWidth: 2 }}>
-                            Selection Required: Please choose your <strong>Course</strong>, <strong>Year</strong>, and <strong>Section</strong>.
-                        </Alert>
-                    </Box>
-                )}
             </Box>
         </ThemeProvider>
     );

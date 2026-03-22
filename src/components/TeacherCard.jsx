@@ -1,5 +1,4 @@
-import React from 'react';
-import { Paper, Box, Typography, Button, Avatar } from '@mui/material';
+import { Paper, Box, Typography, Button, Avatar, Tooltip } from '@mui/material';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 
 export default function TeacherCard({ name, subject, image, formLink }) {
@@ -9,7 +8,6 @@ export default function TeacherCard({ name, subject, image, formLink }) {
             sx={{ 
                 display: 'flex', 
                 alignItems: 'center', 
-                // This is the "Magnet" that pushes content to opposite sides
                 justifyContent: 'space-between', 
                 p: 2, 
                 width: '100%', 
@@ -25,30 +23,50 @@ export default function TeacherCard({ name, subject, image, formLink }) {
                 }
             }}
         >
-            {/* Group Name and Avatar together on the left */}
-            <Box sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
+            {/* Left Side: Avatar and Name Info */}
+            <Box sx={{ display: 'flex', alignItems: 'center', minWidth: 0, flex: 1 }}>
                 <Avatar 
                     src={image} 
                     sx={{ width: 50, height: 50, mr: 2, bgcolor: 'primary.main' }}
                 >
                     {name ? name.charAt(0) : "U"}
                 </Avatar>
+                
                 <Box sx={{ minWidth: 0 }}>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        {name || "Instructor Name"}
-                    </Typography>
+                    {/* TOOLTIP ADDED HERE */}
+                    <Tooltip 
+                        title={name || "Instructor Name"} 
+                        arrow 
+                        placement="top"
+                        enterTouchDelay={0} 
+                    >
+                        <Typography 
+                            variant="subtitle1" 
+                            sx={{ 
+                                fontWeight: 700, 
+                                whiteSpace: 'nowrap', 
+                                overflow: 'hidden', 
+                                textOverflow: 'ellipsis',
+                                cursor: 'help' // Change cursor to a question/help icon
+                            }}
+                        >
+                            {name || "Instructor Name"}
+                        </Typography>
+                    </Tooltip>
+
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         {subject || "General Instruction"}
                     </Typography>
                 </Box>
             </Box>
 
-            {/* Button stays on the right because of justifyContent: 'space-between' above */}
+            {/* Right Side: Button */}
             <Button 
                 variant="contained" 
-                target="_blank"            
+                target="_blank"             
                 rel="noopener noreferrer"
                 href={formLink}
+                startIcon={<RateReviewIcon />}
                 sx={{ 
                     ml: 2, 
                     borderRadius: '8px', 
