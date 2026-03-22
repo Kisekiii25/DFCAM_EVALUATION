@@ -1,0 +1,93 @@
+:root {
+  /* DFCAM College Brand Colors */
+  --dfcam-blue: #0038a8; /* Deep Blue from logo ring */
+  --dfcam-gold: #ffd700; /* Gold/Yellow from the torch */
+  --dfcam-light-blue: #80d8ff; /* Sky blue from the inner circle */
+  
+  --text: #4b5563;
+  --text-h: #111827;
+  --bg: #ffffff;
+  --border: #e5e7eb;
+  --code-bg: #f3f4f6;
+  
+  /* Primary Action Colors */
+  --accent: var(--dfcam-blue);
+  --accent-bg: rgba(0, 56, 168, 0.05);
+  --accent-border: rgba(0, 56, 168, 0.3);
+  
+  --shadow: rgba(0, 0, 0, 0.1) 0 4px 6px -1px, rgba(0, 0, 0, 0.06) 0 2px 4px -1px;
+
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --heading: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  font: 16px/1.6 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f9fafb;
+    --bg: #0f172a; /* Deep Navy Dark Mode */
+    --border: #1e293b;
+    --code-bg: #1e293b;
+    --accent: var(--dfcam-light-blue);
+    --accent-bg: rgba(128, 216, 255, 0.1);
+    --accent-border: rgba(128, 216, 255, 0.4);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+}
+
+#root {
+  width: 100%;
+  max-width: 1280px; /* Standardized dashboard width */
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Typography Improvements */
+h1, h2, h3 {
+  font-family: var(--heading);
+  color: var(--text-h);
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  #root { padding: 0 16px; }
+}
+
+/* Scrollbar Styling for a "Pro" look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text);
+}
