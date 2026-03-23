@@ -21,10 +21,10 @@ export default function TeacherCard({ name, subject, image, formLink }) {
         }}
     >
         {/* Left/Top Side: Avatar and Name Info */}
-        <Box sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', minWidth: 0, }}>
             <Avatar 
                 src={image} 
-                sx={{ width: 50, height: 50, mr: 2, bgcolor: 'primary.main' }}
+                sx={{ width: 50, height: 50, mr: 2, bgcolor: 'primary.main', color: '#fff'}}
             >
                 {name ? name.charAt(0) : "U"}
             </Avatar>

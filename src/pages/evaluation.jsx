@@ -88,7 +88,8 @@ export default function evaluation() {
         "Education is the most powerful weapon to change the world.",
         "The influence of a great teacher can never be erased.",
         "Quality is not an act, it is a habit.",
-        "Strive for excellence in every evaluation."
+        "Strive for excellence in every evaluation.",
+        "Self-doubt kills talent."
     ];
 
     if (loading) {
