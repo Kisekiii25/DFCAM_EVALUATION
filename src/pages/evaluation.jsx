@@ -207,6 +207,63 @@ export default function evaluation() {
                     }} 
                 />
 
+
+                {/* NEW: ACTIVE SELECTION HEADER */}
+                {(selectedCourse || selectedYear || selectedSection) && (
+                    <Box 
+                        sx={{ 
+                            mb: 3, 
+                            position: 'sticky',
+                            top: 10,
+                            zIndex: 10,
+                            borderRadius: "10px",
+                            py: 2,
+                            bgcolor: 'rgba(15, 23, 42, 0.9)',
+                            backdropFilter: 'blur(8px)',
+                            borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                            display: 'flex', 
+                            justifyContent: 'center', 
+                            flexWrap: 'wrap', 
+                            gap: 1 
+                        }}
+                    >
+                        <Typography 
+                            variant="overline" 
+                            sx={{ 
+                                color: 'text.secondary', 
+                                width: '100%', 
+                                textAlign: 'center', 
+                                mb: 0.5,
+                                fontWeight: 'bold'
+                            }}
+                        >
+                            Currently Viewing
+                        </Typography>
+                        
+                        {/* Course Chip */}
+                        {selectedCourse && (
+                            <Box sx={{ bgcolor: 'rgba(37, 99, 235, 0.2)', color: '#60a5fa', px: 2, py: 0.5, borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(96, 165, 250, 0.3)' }}>
+                                {selectedCourse}
+                            </Box>
+                        )}
+                        
+                        {/* Year Level Chip */}
+                        {selectedYear && (
+                            <Box sx={{ bgcolor: 'rgba(37, 99, 235, 0.2)', color: '#60a5fa', px: 2, py: 0.5, borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(96, 165, 250, 0.3)' }}>
+                                {selectedYear}
+                            </Box>
+                        )}
+                        
+                        {/* Section Chip */}
+                        {selectedSection && (
+                            <Box sx={{ bgcolor: 'rgba(37, 99, 235, 0.2)', color: '#60a5fa', px: 2, py: 0.5, borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(96, 165, 250, 0.3)' }}>
+                                Section {selectedSection}
+                            </Box>
+                        )}
+                    </Box>
+                )}
+
+
                 {/* TEACHER LIST SECTION */}
                 <Box sx={{ 
                     width: '100%', 
@@ -214,6 +271,7 @@ export default function evaluation() {
                     mx: 'auto', 
                     mt: 2 
                 }}>
+
                     <Grid container spacing={2}>
                         {filteredTeachers.map((teacher, index) => (
                             <Grid item xs={12} key={index} sx={{ display: 'flex', width: '100%' }}> 
