@@ -29,6 +29,9 @@ const dfcamTheme = createTheme({
             primary: '#ffffff',
             secondary: '#9ca3af',
         },
+        shape: {
+            borderRadius: 12, 
+        },
     },
 });
 

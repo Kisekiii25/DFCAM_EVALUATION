@@ -18,7 +18,7 @@ export default function Home() {
         <Box sx={{ 
             height: 'calc(100vh - 64px)', 
             width: '100%',
-            bgcolor: '#0f172a',
+            bgcolor: 'var(--bg)',
             backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('/hero-bg.jpg')`,            backgroundSize: 'cover',
             backgroundPosition: 'center',
             display: 'flex',
