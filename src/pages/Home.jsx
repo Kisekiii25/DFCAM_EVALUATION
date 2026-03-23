@@ -24,7 +24,7 @@ export default function Home() {
             display: 'flex',
             alignItems: 'center', 
             justifyContent: 'center',
-            overflow: 'hidden' // Prevents accidental scrolling
+            overflow: 'hidden',
         }}>
 
             <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 4, md: 10 } }}> 
@@ -129,6 +129,13 @@ export default function Home() {
                 onClose={handleClose} 
                 fullWidth
                 maxWidth="xs"
+                slotProps={{
+                    backdrop: {
+                        sx: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.3)', // Lighter overlay
+                        }
+                    }
+                }}
                 PaperProps={{ 
                     sx: { 
                         bgcolor: '#1e293b', 

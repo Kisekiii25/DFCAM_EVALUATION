@@ -33,7 +33,7 @@
   :root {
     --text: #9ca3af;
     --text-h: #f9fafb;
-    --bg: #0f172a; /* Deep Navy Dark Mode */
+    --bg: #0f172a; 
     --border: #1e293b;
     --code-bg: #1e293b;
     --accent: var(--dfcam-light-blue);
