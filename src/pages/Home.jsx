@@ -18,8 +18,8 @@ export default function Home() {
         <Box sx={{ 
             height: 'calc(100vh - 64px)', 
             width: '100%',
-            backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('/hero-bg.jpg')`, 
-            backgroundSize: 'cover',
+            bgcolor: '#0f172a',
+            backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('/hero-bg.jpg')`,            backgroundSize: 'cover',
             backgroundPosition: 'center',
             display: 'flex',
             alignItems: 'center', 
@@ -132,17 +132,17 @@ export default function Home() {
                 slotProps={{
                     backdrop: {
                         sx: {
-                            backgroundColor: 'rgba(0, 0, 0, 0.3)', // Lighter overlay
+                            backgroundColor: 'rgba(2, 6, 23, 0.7)', // Matches a deep navy
                         }
                     }
                 }}
                 PaperProps={{ 
                     sx: { 
-                        bgcolor: '#1e293b', 
+                        bgcolor: '#1e293b', // Match your Card colors from the Eval page
                         color: '#fff', 
-                        borderRadius: { xs: '16px', md: '12px' },
-                        p: { xs: 1, md: 2 },
-                        mx: 2 
+                        borderRadius: '16px',
+                        border: '1px solid rgba(255, 255, 255, 0.1)', // Subtle border
+                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
                     } 
                 }}
             >
