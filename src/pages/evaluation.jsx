@@ -214,7 +214,7 @@ export default function evaluation() {
                         sx={{ 
                             mb: 3, 
                             position: 'sticky',
-                            top: 10,
+                            top: 90,
                             zIndex: 10,
                             borderRadius: "10px",
                             py: 2,
