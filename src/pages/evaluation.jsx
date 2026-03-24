@@ -168,7 +168,6 @@ export default function Evaluation({ allData }) {
                             position: 'sticky',
                             top: 72,
                             zIndex: 10,
-                            borderRadius: "10px",
                             width: '100%',
                             py: 2,
                             bgcolor: 'rgba(15, 23, 42, 0.9)',
