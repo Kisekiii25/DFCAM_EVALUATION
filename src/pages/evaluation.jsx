@@ -101,7 +101,7 @@ export default function Evaluation({ allData }) {
                     </Box>
                 </Paper>
 
-                {/* 2. FILTER SECTION (Fixed to 800px) */}
+                {/*FILTER SECTION (Fixed to 800px) */}
                 <Box sx={{ maxWidth: '800px', width: '100%', mb: 4 }}>
                     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
                         <FormControl fullWidth>
@@ -129,7 +129,7 @@ export default function Evaluation({ allData }) {
                     {/* Reset Button */}
                     {(selectedCourse || selectedYear || selectedSection) && (
                         <Button onClick={handleReset} startIcon={<RestartAltIcon />} sx={{ mt: 1, textTransform: 'none', color: '#60a5fa', '&:hover': {
-                            color: '#93c5fd', // Even lighter on hover
+                            color: '#93c5fd', // lighter on hover
                             bgcolor: 'rgba(255, 255, 255, 0.05)' 
                         } }}>
                             Clear all filters
@@ -152,7 +152,6 @@ export default function Evaluation({ allData }) {
                     sx={{ 
                         width: '100%', 
                         height: '1px', 
-                        // Using a gradient makes it fade at the edges, which looks very "Pro"
                         background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%)',
                         my: 1,
                         maxWidth: '800px',
@@ -167,9 +166,10 @@ export default function Evaluation({ allData }) {
                         sx={{ 
                             mb: 3, 
                             position: 'sticky',
-                            top: 90,
+                            top: 72,
                             zIndex: 10,
                             borderRadius: "10px",
+                            width: '100%',
                             py: 2,
                             bgcolor: 'rgba(15, 23, 42, 0.9)',
                             backdropFilter: 'blur(8px)',

@@ -7,7 +7,7 @@ export default function TeacherCard({ name, subject, image, formLink }) {
         elevation={0} 
         sx={{ 
             display: 'flex', 
-            // 1. STACK vertically on mobile, ROW on desktop
+            //  STACK vertically on mobile, ROW on desktop
             flexDirection: { xs: 'column', sm: 'row' }, 
             alignItems: { xs: 'stretch', sm: 'center' }, 
             justifyContent: 'space-between', 
@@ -34,7 +34,6 @@ export default function TeacherCard({ name, subject, image, formLink }) {
                         variant="subtitle1" 
                         sx={{ 
                             fontWeight: 700, 
-                            // On mobile, we can let the name wrap or stay ellipsis
                             whiteSpace: { xs: 'normal', sm: 'nowrap' }, 
                             overflow: 'hidden', 
                             textOverflow: 'ellipsis',
@@ -57,12 +56,10 @@ export default function TeacherCard({ name, subject, image, formLink }) {
             href={formLink}
             startIcon={<RateReviewIcon />} 
             sx={{ 
-                // 2. Remove left margin on mobile, add it back on desktop
                 ml: { xs: 0, sm: 2 }, 
                 borderRadius: '8px', 
                 textTransform: 'none', 
                 fontWeight: 'bold',
-                // 3. Make button full width on mobile
                 width: { xs: '100%', sm: 'auto' },
                 py: { xs: 1.2, sm: 1 } 
             }}

@@ -63,7 +63,7 @@ export default function Navbar({settings}) {
                         </Box>
                     </Box>
 
-                    {/* OPTIONAL: Nav Links or User Greeting */}
+                    {/* Nav A.Y */}
                     <Typography 
                         variant="body2" 
                         sx={{ color: 'rgba(255,255,255,0.6)', fontStyle: 'italic' }}

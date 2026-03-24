@@ -29,7 +29,7 @@ export default function Home({ allData, settings }) {
         "Self-doubt kills talent."
     ];
 
-    // 1. Check for BOTH allData and settings to prevent crashes
+    // Check for BOTH allData and settings to prevent crashes
     if (!allData || !settings) {
         const randomQuote = loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
 
