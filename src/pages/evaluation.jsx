@@ -29,6 +29,15 @@ export default function Evaluation({ allData }) {
         );
     }
 
+      // if (!allData) {
+    //     return (
+    //     <Box display="flex" justifyContent="center" mt={10}>
+    //         <CircularProgress /> 
+    //         <Typography>Refreshing data...</Typography>
+    //     </Box>
+    //     );
+    // }
+
     const courses = [...new Set(allData.map(item => item.course || item.Course))].filter(Boolean).sort();
 
     const yearLevels = [...new Set(
@@ -55,15 +64,6 @@ export default function Evaluation({ allData }) {
         setSelectedSection("");
     };
 
-    if (!allData) {
-        return (
-        <Box display="flex" justifyContent="center" mt={10}>
-            <CircularProgress /> 
-            <Typography>Refreshing data...</Typography>
-        </Box>
-        );
-    }
-
     return (
         <ThemeProvider theme={dfcamTheme}>
             {/* MAIN WRAPPER: Centers everything and sets the 800px guide */}
@@ -73,7 +73,7 @@ export default function Evaluation({ allData }) {
                 bgcolor: 'background.default',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center' // Centers the 800px column on the screen
+                alignItems: 'center' 
             }}>
                 
                 {/*SCHOOL HEADER (Fixed to 800px) */}
@@ -85,7 +85,7 @@ export default function Evaluation({ allData }) {
                     gap: { xs: 1.5, sm: 3 },
                     borderLeft: '6px solid', 
                     borderColor: 'primary.main',
-                    maxWidth: '800px', // MATCHING WIDTH
+                    maxWidth: '800px',
                     width: '100%',
                     mx: 'auto',
                     boxSizing: 'border-box'
@@ -161,7 +161,7 @@ export default function Evaluation({ allData }) {
                 />
 
 
-                {/* NEW: ACTIVE SELECTION HEADER */}
+                {/* ACTIVE SELECTION HEADER */}
                 {(selectedCourse || selectedYear || selectedSection) && (
                     <Box 
                         sx={{ 
@@ -220,7 +220,7 @@ export default function Evaluation({ allData }) {
                 {/* TEACHER LIST SECTION */}
                 <Box sx={{ 
                     width: '100%', 
-                    maxWidth: '800px', // This should match your blue header width exactly
+                    maxWidth: '800px', 
                     mx: 'auto', 
                     mt: 2 
                 }}>
@@ -228,7 +228,6 @@ export default function Evaluation({ allData }) {
                     <Grid container spacing={2}>
                         {filteredTeachers.map((teacher, index) => (
                             <Grid item xs={12} key={index} sx={{ display: 'flex', width: '100%' }}> 
-                                {/* Adding width: '100%' and display: 'flex' here is critical */}
                                 <TeacherCard {...teacher} />
                             </Grid>
                         ))}

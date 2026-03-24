@@ -30,7 +30,6 @@ export default function TeacherCard({ name, subject, image, formLink }) {
             </Avatar>
             
             <Box sx={{ minWidth: 0, flex: 1 }}>
-                <Tooltip title={name} arrow placement="top" enterTouchDelay={0}>
                     <Typography 
                         variant="subtitle1" 
                         sx={{ 
@@ -44,7 +43,6 @@ export default function TeacherCard({ name, subject, image, formLink }) {
                     >
                         {name || "Instructor Name"}
                     </Typography>
-                </Tooltip>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                     {subject || "General Instruction"}
                 </Typography>
