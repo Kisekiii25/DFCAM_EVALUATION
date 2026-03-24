@@ -1,66 +1,34 @@
-import React, { useEffect, useState } from "react"; 
+import React, { useState } from "react"; 
+import { dfcamTheme } from '../theme'; 
+
 
 import { 
     FormControl, InputLabel, Select, MenuItem, 
     Box, Alert, CircularProgress, Button, Typography, Paper, Grid
 } from '@mui/material';
 
-// Only keep this if you ran: npm install @mui/icons-material
 import RestartAltIcon from '@mui/icons-material/RestartAlt'; 
-
+    
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TeacherCard from "../components/TeacherCard";
-import schoolLogo from "../assets/DFCAMlogo.png"; // Double check this filename!
+import schoolLogo from "../assets/DFCAMlogo.png";
 
-// 1. DFCAMCLP BRANDED THEME
-const dfcamTheme = createTheme({
-    palette: {
-        mode: 'dark',
-        primary: {
-            main: '#0038a8', // DFCAM Blue
-            light: '#80D8FF', 
-            contrastText: '#fff',
-        },
-        background: {
-            default: '#0f172a', // Deep Navy
-            paper: '#1e293b',
-        },
-        text: {
-            primary: '#ffffff',
-            secondary: '#9ca3af',
-        },
-        shape: {
-            borderRadius: 12, 
-        },
-    },
-});
 
-export default function evaluation() {
-    const [allData, setAllData] = useState([]);
+export default function Evaluation({ allData }) {
     const [selectedCourse, setSelectedCourse] = useState("");
     const [selectedYear, setSelectedYear] = useState("");
     const [selectedSection, setSelectedSection] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    // 2. DATA FETCHING
-    useEffect(() => {
-        // REPLACE WITH YOUR ACTUAL DEPLOYMENT URL
-        const apiUrl = import.meta.env.VITE_API_URL;
-        fetch(apiUrl)
-            .then(res => res.json())
-            .then(data => {
-                if (data.error) setError(data.error);
-                else setAllData(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                setError("Connection to Faculty Database failed.");
-                setLoading(false);
-            });
-    }, []);
+    //Add a check to prevent crash if data isn't passed yet
+    if (!allData || allData.length === 0) {
+        return (
+            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="calc(100vh - 130px)" bgcolor="#0f172a">
+                <CircularProgress />
+                <Typography sx={{ mt: 2, color: 'white' }}>Syncing faculty data...</Typography>
+            </Box>
+        );
+    }
 
-    // 3. CASCADING LOGIC
     const courses = [...new Set(allData.map(item => item.course || item.Course))].filter(Boolean).sort();
 
     const yearLevels = [...new Set(
@@ -87,30 +55,12 @@ export default function evaluation() {
         setSelectedSection("");
     };
 
-    const loadingQuotes = [
-        "Education is the most powerful weapon to change the world.",
-        "The influence of a great teacher can never be erased.",
-        "Quality is not an act, it is a habit.",
-        "Strive for excellence in every evaluation.",
-        "Self-doubt kills talent."
-    ];
-
-    if (loading) {
-        // Pick a random quote every time it loads
-        const randomQuote = loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
-
+    if (!allData) {
         return (
-            <ThemeProvider theme={dfcamTheme}>
-                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="100vh" bgcolor="background.default" textAlign="center" p={3}>
-                    <CircularProgress size={60} thickness={4} />
-                    <Typography variant="h6" sx={{ mt: 4, color: 'primary.light', fontStyle: 'italic', maxWidth: '500px' }}>
-                        "{randomQuote}"
-                    </Typography>
-                    <Typography variant="caption" sx={{ mt: 2, color: 'text.secondary', letterSpacing: 2 }}>
-                        CONNECTING TO DFCAMCLP DATA
-                    </Typography>
-                </Box>
-            </ThemeProvider>
+        <Box display="flex" justifyContent="center" mt={10}>
+            <CircularProgress /> 
+            <Typography>Refreshing data...</Typography>
+        </Box>
         );
     }
 

@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, Container, Dialog, DialogTitle, DialogContent, DialogActions, Stack } from '@mui/material';
+import { dfcamTheme } from '../theme'; 
+
+import { 
+    Box, Typography, Button, Container, Dialog, 
+    DialogTitle, DialogContent, DialogActions, Stack,
+    CircularProgress,
+    ThemeProvider
+} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import schoolLogo from '../assets/DFCAMlogo.png';
 
-export default function Home() {
+export default function Home({ allData, settings }) {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -14,33 +21,70 @@ export default function Home() {
         navigate('/evaluation');
     };
 
+    const loadingQuotes = [
+        "Education is the most powerful weapon to change the world.",
+        "The influence of a great teacher can never be erased.",
+        "Quality is not an act, it is a habit.",
+        "Strive for excellence in every evaluation.",
+        "Self-doubt kills talent."
+    ];
+
+    // 1. Check for BOTH allData and settings to prevent crashes
+    if (!allData || !settings) {
+        const randomQuote = loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
+
+        return (
+            <ThemeProvider theme={dfcamTheme}>
+                <Box 
+                    sx={{
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    minHeight: 'calc(100vh - 130px)', 
+                    bgcolor: '#0f172a', 
+                    textAlign: 'center', 
+                    p: 3 
+                }}>
+
+                        <CircularProgress size={60} thickness={4} sx={{ color: 'primary.light' }} />
+                        <Typography variant="h6" sx={{ mt: 4, color: 'primary.light', fontStyle: 'italic', maxWidth: '500px' }}>
+                            "{randomQuote}"
+                        </Typography>
+                        <Typography variant="caption" sx={{ mt: 2, color: 'text.secondary', letterSpacing: 2 }}>
+                            CONNECTING TO DFCAMCLP DATA
+                        </Typography>
+                </Box>
+            </ThemeProvider>
+        );
+    }
+
     return (
         <Box sx={{ 
             height: 'calc(100vh - 64px)', 
             width: '100%',
-            bgcolor: 'var(--bg)',
-            backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('/hero-bg.jpg')`,            backgroundSize: 'cover',
+            bgcolor: '#0f172a',
+            backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('/hero-bg.jpg')`,
+            backgroundSize: 'cover',
             backgroundPosition: 'center',
             display: 'flex',
             alignItems: 'center', 
             justifyContent: 'center',
             overflow: 'hidden',
         }}>
-
             <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 4, md: 10 } }}> 
                 <Stack 
                     direction={{ xs: 'column', md: 'row' }} 
                     spacing={{ xs: 4, md: 6 }} 
                     alignItems="center"
                     justifyContent="center"
-                    sx={{ minHeight: 'calc(100vh - 120px)' }} // Ensures it stays centered even on tall mobile screens
+                    sx={{ minHeight: 'calc(100vh - 120px)' }}
                 >
                     {/* LEFT SIDE: LOGO */}
                     <Box 
                         component="img" 
                         src={schoolLogo}
                         sx={{ 
-                            // Smaller on mobile (140px), larger on desktop (240px)
                             width: { xs: 140, sm: 180, md: 240 }, 
                             height: 'auto',
                             borderRadius: '50%', 
@@ -73,7 +117,6 @@ export default function Home() {
                             mt: 1, 
                             mb: 2, 
                             lineHeight: 1.1,
-                            // Aggressive scaling for mobile headings
                             fontSize: { xs: '1.4rem', sm: '1.8rem', md: '2.8rem' }, 
                         }}>
                             DR. FILEMON C. AGUILAR MEMORIAL COLLEGE OF LAS PIÑAS
@@ -86,20 +129,13 @@ export default function Home() {
                             fontSize: { xs: '0.9rem', md: '1.1rem' } 
                         }}>
                             IT CAMPUS | STUDENT – FACULTY PERFORMANCE EVALUATION
-                            <Box component="span" sx={{ 
-                                display: 'block', 
-                                fontSize: { xs: '0.75rem', md: '0.85rem' }, 
-                                mt: 1, 
-                                letterSpacing: 1, 
-                                opacity: 0.6 
-                            }}>
-                                A.Y. 2025- 2026 (2nd SEMESTER, Midterm)
+                            <Box component="span" sx={{ display: 'block', mt: 1, opacity: 0.6 }}>
+                                A.Y. {settings.academicYear} ({settings.semester})
                             </Box>
                         </Typography>
 
                         <Button 
                             variant="outlined" 
-                            fullWidth={false} // Prevents button from stretching 100% on mobile
                             onClick={handleOpen}
                             sx={{ 
                                 color: '#fff', 
@@ -122,7 +158,6 @@ export default function Home() {
                 </Stack>
             </Container>
 
-
              {/* REMINDER DIALOG */}
             <Dialog 
                 open={open} 
@@ -131,37 +166,32 @@ export default function Home() {
                 maxWidth="xs"
                 slotProps={{
                     backdrop: {
-                        sx: {
-                            backgroundColor: 'rgba(2, 6, 23, 0.7)', // Matches a deep navy
-                        }
+                        sx: { backgroundColor: 'rgba(2, 6, 23, 0.7)' }
                     }
                 }}
                 PaperProps={{ 
                     sx: { 
-                        bgcolor: '#1e293b', // Match your Card colors from the Eval page
+                        bgcolor: '#1e293b',
                         color: '#fff', 
                         borderRadius: '16px',
-                        border: '1px solid rgba(255, 255, 255, 0.1)', // Subtle border
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
                         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
                     } 
                 }}
             >
-                <DialogTitle sx={{ 
-                    fontWeight: 800, 
-                    fontSize: { xs: '1.3rem', md: '1.5rem' },
-                    pb: 1 
-                }}>
+                <DialogTitle sx={{ fontWeight: 800, fontSize: { xs: '1.3rem', md: '1.5rem' }, pb: 1 }}>
                     Reminder:
                 </DialogTitle>
 
                 <DialogContent>
-                    <Typography variant="body1" sx={{ 
-                        mb: 2, 
-                        opacity: 0.9,
-                        fontSize: { xs: '0.9rem', md: '1rem' },
-                        lineHeight: 1.5
-                    }}>
+                    <Typography variant="body1" sx={{ mb: 2, opacity: 0.9, fontSize: { xs: '0.9rem', md: '1rem' }, lineHeight: 1.5 }}>
                         This Online Evaluation aims to obtain feedback from you to assess our faculty members based on the given indicators.
+                        <br /> <br />
+                        Please rate the quality of the performance of the faculty concerned.
+                        <br /> <br />
+                        All instructors must be evaluated. Kindly give an accurate and honest response to each of the items. 
+                        <br /> <br />
+                        <b>Don't use foul words.</b>                 
                     </Typography>
                     
                     <Typography variant="body1" sx={{ 
@@ -177,34 +207,14 @@ export default function Home() {
                     </Typography>
                 </DialogContent>
 
-                <DialogActions sx={{ 
-                    p: { xs: 2, md: 3 }, 
-                    // Forced to 'row' so they stay side-by-side on all screen sizes
-                    flexDirection: 'row', 
-                    justifyContent: 'flex-end',
-                    gap: 1
-                }}>
-                    <Button 
-                        onClick={handleClose} 
-                        // Removed fullWidth so they don't stack
-                        sx={{ 
-                            color: 'rgba(255,255,255,0.6)',
-                            fontSize: { xs: '0.8rem', md: '0.9rem' } 
-                        }}
-                    >
+                <DialogActions sx={{ p: { xs: 2, md: 3 }, gap: 1 }}>
+                    <Button onClick={handleClose} sx={{ color: 'rgba(255,255,255,0.6)' }}>
                         Cancel
                     </Button>
                     <Button 
                         onClick={handleConfirm} 
                         variant="contained" 
-                        // Removed fullWidth and adjusted padding for mobile fit
-                        sx={{ 
-                            px: { xs: 2, md: 4 }, 
-                            py: { xs: 1, md: 1 },
-                            fontWeight: 700,
-                            fontSize: { xs: '0.8rem', md: '0.9rem' },
-                            whiteSpace: 'nowrap' // Prevents "I Understand" from splitting into two lines
-                        }}
+                        sx={{ fontWeight: 700, whiteSpace: 'nowrap' }}
                     >
                         I Understand
                     </Button>

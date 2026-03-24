@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography, Box, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 import schoolLogo from '../assets/DFCAMlogo.png';
 
-export default function Navbar() {
+export default function Navbar({settings}) {
     return (
         <AppBar 
             position="sticky" 
@@ -68,7 +68,7 @@ export default function Navbar() {
                         variant="body2" 
                         sx={{ color: 'rgba(255,255,255,0.6)', fontStyle: 'italic' }}
                     >
-                        A.Y. 2025-2026
+                        A.Y. {settings.academicYear}
                     </Typography>
                 </Toolbar>
             </Container>
