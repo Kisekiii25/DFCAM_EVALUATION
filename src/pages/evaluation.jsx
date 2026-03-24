@@ -9,7 +9,7 @@ import {
 
 import RestartAltIcon from '@mui/icons-material/RestartAlt'; 
     
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import TeacherCard from "../components/TeacherCard";
 import schoolLogo from "../assets/DFCAMlogo.png";
 
@@ -29,22 +29,17 @@ export default function Evaluation({ allData }) {
         );
     }
 
-      // if (!allData) {
-    //     return (
-    //     <Box display="flex" justifyContent="center" mt={10}>
-    //         <CircularProgress /> 
-    //         <Typography>Refreshing data...</Typography>
-    //     </Box>
-    //     );
-    // }
-
+    // Get Unique Courses
     const courses = [...new Set(allData.map(item => item.course || item.Course))].filter(Boolean).sort();
 
+    // Get Unique Year Levels based on Course
     const yearLevels = [...new Set(
         allData.filter(item => (item.course || item.Course) === selectedCourse)
             .map(item => item.yearLevel || item.YearLevel)
     )].filter(Boolean).sort();
 
+
+    // Get Unique Sections based on Course & Year
     const availableSections = [...new Set(
         allData.filter(item => 
             (item.course || item.Course) === selectedCourse && 
@@ -52,6 +47,8 @@ export default function Evaluation({ allData }) {
         ).map(item => item.section || item.Section)
     )].filter(Boolean).sort();
 
+
+    // Final List of Teachers to display
     const filteredTeachers = allData.filter(t => 
         (t.course || t.Course) === selectedCourse && 
         (t.yearLevel || t.YearLevel) === selectedYear && 
@@ -76,7 +73,7 @@ export default function Evaluation({ allData }) {
                 alignItems: 'center' 
             }}>
                 
-                {/*SCHOOL HEADER (Fixed to 800px) */}
+                {/*SCHOOL HEADER */}
                 <Paper elevation={6} sx={{ 
                     p: { xs: 1.5, sm: 3 },
                     mb: 4, 
@@ -101,7 +98,7 @@ export default function Evaluation({ allData }) {
                     </Box>
                 </Paper>
 
-                {/*FILTER SECTION (Fixed to 800px) */}
+                {/*FILTER DROPDOWNS SECTION*/}
                 <Box sx={{ maxWidth: '800px', width: '100%', mb: 4 }}>
                     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
                         <FormControl fullWidth>
@@ -126,7 +123,7 @@ export default function Evaluation({ allData }) {
                         </FormControl>
                     </Box>
 
-                    {/* Reset Button */}
+                    {/* Reset Link Button */}
                     {(selectedCourse || selectedYear || selectedSection) && (
                         <Button onClick={handleReset} startIcon={<RestartAltIcon />} sx={{ mt: 1, textTransform: 'none', color: '#60a5fa', '&:hover': {
                             color: '#93c5fd', // lighter on hover
@@ -138,7 +135,7 @@ export default function Evaluation({ allData }) {
                 </Box>
 
 
-                {/* Status Messages */}
+                {/* STATUS MESSAGES / DIVIDER */}
                 {!selectedSection && (
                     <Box sx={{ maxWidth: '800px', width: '100%' }}>
                         <Alert variant="outlined" severity="info" sx={{ borderStyle: 'dashed', borderWidth: 2 }}>

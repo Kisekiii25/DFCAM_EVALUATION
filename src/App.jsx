@@ -1,33 +1,62 @@
-import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+// Pages & Components
 import Home from './pages/Home';
 import Evaluation from './pages/evaluation';
 import Navbar from './components/Navbar';
 
 function App() {
-  const [allData, setAllData] = useState(null); 
-  const [settings, setSettings] = useState({ academicYear: '...', semester: '...' });
+    // 1. GLOBAL STATE
+    const [allData, setAllData] = useState(null); 
+    const [settings, setSettings] = useState({ 
+        academicYear: 'Loading...', 
+        semester: 'Loading...' 
+    });
 
-  useEffect(() => {
-      const apiUrl = import.meta.env.VITE_API_URL;
-      fetch(apiUrl)
-        .then(res => res.json())
-        .then(data => {
-          setAllData(data.teachers);
-          setSettings(data.settings);
-        })
-        .catch(err => console.error("Data fetch failed", err));
-  }, []);
+    // 2. DATA FETCHING (API)
+    useEffect(() => {
+        // Accessing the Vercel/Vite Environment Variable
+        const apiUrl = import.meta.env.VITE_API_URL;
 
-  return (
-    <>
-      <Navbar settings={settings} />
-      <Routes>
-        <Route path="/" element={<Home allData={allData} settings={settings} />} />
-        <Route path="/evaluation" element={<Evaluation allData={allData} />} />
-      </Routes>
-    </>
-  );
+        if (!apiUrl) {
+            console.error("API URL is missing! Check your .env file or Vercel settings.");
+            return;
+        }
+
+        fetch(apiUrl)
+            .then(res => res.json())
+            .then(data => {
+                // Assuming your GAS returns { teachers: [...], settings: {...} }
+                setAllData(data.teachers);
+                setSettings(data.settings);
+            })
+            .catch(err => {
+                console.error("Data fetch failed:", err);
+            });
+    }, []);
+
+    // 3. RENDERING & ROUTES
+    return (
+        <>
+            {/* Navbar */}
+            <Navbar settings={settings} />
+
+            <Routes>
+                {/* Landing Page */}
+                <Route 
+                    path="/" 
+                    element={<Home allData={allData} settings={settings} />} 
+                />
+                
+                {/* Main Evaluation Page */}
+                <Route 
+                    path="/evaluation" 
+                    element={<Evaluation allData={allData} />} 
+                />
+            </Routes>
+        </>
+    );
 }
 
 export default App;

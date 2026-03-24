@@ -1,59 +1,63 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Box, Container } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, Container, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import schoolLogo from '../assets/DFCAMlogo.png';
 
-export default function Navbar({settings}) {
+export default function Navbar({ settings }) {
+    const theme = useTheme();
+
     return (
-        <AppBar 
-            position="sticky" 
-            sx={{ 
-                bgcolor: 'rgba(15, 23, 42, 0.8)', // Semi-transparent dark
-                backdropFilter: 'blur(10px)',     // The "Glass" effect
-                borderBottom: '1px solid rgba(37, 99, 235, 0.3)', // Subtle blue glow
-                boxShadow: 'none'
+        <AppBar
+            position="sticky"
+            sx={{
+                // Using theme palette for consistency
+                bgcolor: 'rgba(22, 35, 66, 0.8)', 
+                backdropFilter: 'blur(10px)',
+                borderBottom: `1px solid ${theme.palette.primary.main}4D`, // 4D = 30% opacity in hex
+                boxShadow: 'none',
             }}
         >
             <Container maxWidth="lg">
                 <Toolbar sx={{ justifyContent: 'space-between', py: 1 }}>
                     {/* LOGO & TITLE SECTION */}
-                    <Box 
-                        component={Link} 
-                        to="/" 
-                        sx={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            textDecoration: 'none', 
-                            gap: 2 
+                    <Box
+                        component={Link}
+                        to="/"
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            textDecoration: 'none',
+                            gap: 2,
+                            '&:hover': { opacity: 0.9 }
                         }}
                     >
-                        <Box 
-                            component="img" 
-                            src={schoolLogo} 
-                            sx={{ 
-                                width: 45, 
-                                height: 45, 
-                                borderRadius: '50%', 
-                                bgcolor: '#fff', 
-                                p: 0.2 
-                            }} 
+                        <Box
+                            component="img"
+                            src={schoolLogo}
+                            alt="DFCAM Logo"
+                            sx={{
+                                width: 45,
+                                height: 45,
+                                borderRadius: '50%',
+                                bgcolor: 'common.white',
+                                p: 0.2
+                            }}
                         />
                         <Box>
-                            <Typography 
-                                variant="h6" 
-                                sx={{ 
-                                    color: '#fff', 
-                                    fontWeight: 800, 
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    color: 'common.white',
+                                    fontWeight: 800,
                                     lineHeight: 1.1,
                                     fontSize: { xs: '0.9rem', md: '1.1rem' }
                                 }}
                             >
                                 DFCAMCLP
                             </Typography>
-                            <Typography 
-                                variant="caption" 
-                                sx={{ 
-                                    color: 'primary.light', 
+                            <Typography
+                                variant="caption"
+                                sx={{
+                                    color: 'primary.light',
                                     display: { xs: 'none', md: 'block' },
                                     fontWeight: 600
                                 }}
@@ -63,12 +67,16 @@ export default function Navbar({settings}) {
                         </Box>
                     </Box>
 
-                    {/* Nav A.Y */}
-                    <Typography 
-                        variant="body2" 
-                        sx={{ color: 'rgba(255,255,255,0.6)', fontStyle: 'italic' }}
+                    {/* ACADEMIC YEAR SECTION */}
+                    <Typography
+                        variant="body2"
+                        sx={{ 
+                            color: 'rgba(255, 255, 255, 0.6)', 
+                            fontStyle: 'italic',
+                            fontWeight: 500
+                        }}
                     >
-                        A.Y. {settings.academicYear}
+                        A.Y. {settings?.academicYear || '----'}
                     </Typography>
                 </Toolbar>
             </Container>
