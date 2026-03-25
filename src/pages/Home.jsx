@@ -26,7 +26,14 @@ export default function Home({ allData, settings }) {
         "The influence of a great teacher can never be erased.",
         "Quality is not an act, it is a habit.",
         "Strive for excellence in every evaluation.",
-        "Self-doubt kills talent."
+        "Your feedback today builds a better classroom tomorrow.",
+        "Honest evaluation is the first step toward excellence.",
+        "Self-doubt kills talent.",
+        "A person who never made a mistake never tried anything new.",
+        "Growth starts exactly where your comfort zone ends.",
+        "Loading... please wait while I tell the data to wake up.",
+        "Progress, not perfection.",
+        "The best project you will ever work on is YOU."
     ];
 
     // Check for BOTH allData and settings to prevent crashes
@@ -61,7 +68,7 @@ export default function Home({ allData, settings }) {
 
     return (
         <Box sx={{ 
-            height: 'calc(100vh - 64px)', 
+            height: 'calc(100vh - 82px)', 
             width: '100%',
             bgcolor: '#0f172a',
             backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('/hero-bg.jpg')`,
