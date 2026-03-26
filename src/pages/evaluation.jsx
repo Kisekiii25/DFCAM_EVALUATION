@@ -1,4 +1,4 @@
-import React, { useState } from "react"; 
+import React, { useEffect, useState } from "react"; 
 import { dfcamTheme } from '../theme'; 
 
 
@@ -15,14 +15,26 @@ import schoolLogo from "../assets/DFCAMlogo.png";
 
 
 export default function Evaluation({ allData }) {
-    const [selectedCourse, setSelectedCourse] = useState("");
-    const [selectedYear, setSelectedYear] = useState("");
-    const [selectedSection, setSelectedSection] = useState("");
+    const [selectedCourse, setSelectedCourse] = useState(
+        localStorage.getItem('saved_course') || ""
+    );
+    const [selectedYear, setSelectedYear] = useState(
+        localStorage.getItem('saved_year') || ""
+    );
+    const [selectedSection, setSelectedSection] = useState(
+        localStorage.getItem('saved_section') || ""
+    );
+
+    useEffect(() => {
+        localStorage.setItem('saved_course', selectedCourse);
+        localStorage.setItem('saved_year', selectedYear);
+        localStorage.setItem('saved_section', selectedSection);
+    }, [selectedCourse, selectedYear, selectedSection]);
 
     //Add a check to prevent crash if data isn't passed yet
     if (!allData || allData.length === 0) {
         return (
-            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="calc(100vh - 130px)" bgcolor="#0f172a">
+            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="calc(100vh - 130px)">
                 <CircularProgress />
                 <Typography sx={{ mt: 2, color: 'white' }}>Syncing faculty data...</Typography>
             </Box>
@@ -56,6 +68,7 @@ export default function Evaluation({ allData }) {
     );
 
     const handleReset = () => {
+        localStorage.clear();
         setSelectedCourse("");
         setSelectedYear("");
         setSelectedSection("");
@@ -171,9 +184,11 @@ export default function Evaluation({ allData }) {
                             backdropFilter: 'blur(8px)',
                             borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
                             display: 'flex', 
+                            flexDirection: 'column', 
+                            alignItems: 'center', 
                             justifyContent: 'center', 
                             flexWrap: 'wrap', 
-                            gap: 1 
+                            gap: 1
                         }}
                     >
                         <Typography 
@@ -189,26 +204,47 @@ export default function Evaluation({ allData }) {
                             Currently Viewing
                         </Typography>
                         
+                        
                         {/* Course Chip */}
-                        {selectedCourse && (
-                            <Box sx={{ bgcolor: 'rgba(37, 99, 235, 0.2)', color: '#60a5fa', px: 2, py: 0.5, borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(96, 165, 250, 0.3)' }}>
-                                {selectedCourse}
-                            </Box>
-                        )}
+                        <Box sx={{ 
+                            display: 'flex', 
+                            justifyContent: 'center', 
+                            flexWrap: 'wrap', 
+                            gap: 1 
+                        }}>
+                            {selectedCourse && (
+                                <Box sx={{ bgcolor: 'rgba(37, 99, 235, 0.15)', color: '#60a5fa', px: 2, py: 0.5, borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(96, 165, 250, 0.3)' }}>
+                                    {selectedCourse}
+                                </Box>
+                            )}
+                            {selectedYear && (
+                                <Box sx={{ bgcolor: 'rgba(37, 99, 235, 0.15)', color: '#60a5fa', px: 2, py: 0.5, borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(96, 165, 250, 0.3)' }}>
+                                    {selectedYear}
+                                </Box>
+                            )}
+                            {selectedSection && (
+                                <Box sx={{ bgcolor: 'rgba(37, 99, 235, 0.15)', color: '#60a5fa', px: 2, py: 0.5, borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(96, 165, 250, 0.3)' }}>
+                                    Section {selectedSection}
+                                </Box>
+                            )}
+                        </Box>
                         
-                        {/* Year Level Chip */}
-                        {selectedYear && (
-                            <Box sx={{ bgcolor: 'rgba(37, 99, 235, 0.2)', color: '#60a5fa', px: 2, py: 0.5, borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(96, 165, 250, 0.3)' }}>
-                                {selectedYear}
-                            </Box>
-                        )}
-                        
-                        {/* Section Chip */}
-                        {selectedSection && (
-                            <Box sx={{ bgcolor: 'rgba(37, 99, 235, 0.2)', color: '#60a5fa', px: 2, py: 0.5, borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(96, 165, 250, 0.3)' }}>
-                                Section {selectedSection}
-                            </Box>
-                        )}
+                        {/* The Note: Honest Evaluation */}
+                        <Typography 
+                            variant="caption" 
+                            sx={{ 
+                                color: 'primary.light', // Use that nice light blue
+                                fontWeight: 600,
+                                letterSpacing: 0.5,
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 0.5,
+                                opacity: 0.9
+                            }}
+                        >
+                            <span style={{ fontSize: '1.1rem' }}>ⓘ</span> 
+                            Note: Please evaluate all your instructors honestly.
+                        </Typography>
                     </Box>
                 )}
 

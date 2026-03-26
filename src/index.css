@@ -4,7 +4,6 @@
   --dfcam-gold: #ffd700;
   --dfcam-light-blue: #80d8ff;
   
-  /* Standardized UI Colors (Locked to Dark Theme) */
   --bg: #0f172a;           /* The deep navy from your screenshot */
   --text-h: #f9fafb;       /* Crisp white for headings */
   --text: #9ca3af;         /* Soft gray for body text */
@@ -27,6 +26,19 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg); /* Forces the deep navy background */
+  background-color: var(--bg);
   color: var(--text);
+}
+
+::-webkit-scrollbar {
+  width: 3px; 
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dfcam-gold);
+  border-radius: 10px;  
 }

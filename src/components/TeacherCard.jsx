@@ -3,6 +3,7 @@ import RateReviewIcon from '@mui/icons-material/RateReview';
 
 export default function TeacherCard({ name, subject, image, formLink }) {
     const theme = useTheme();
+    
 
     return (
         <Paper 
@@ -16,9 +17,8 @@ export default function TeacherCard({ name, subject, image, formLink }) {
                 p: 2, 
                 width: '100%', 
                 boxSizing: 'border-box',
-                borderRadius: '12px',
-                // Using theme-based or semantic background
-                bgcolor: '#1e293b', 
+                // borderRadius: '12px',
+                // bgcolor: '#1e293b', 
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 gap: { xs: 2, sm: 0 },
                 transition: 'transform 0.2s ease-in-out',
@@ -74,9 +74,9 @@ export default function TeacherCard({ name, subject, image, formLink }) {
                 startIcon={<RateReviewIcon />} 
                 sx={{ 
                     ml: { xs: 0, sm: 2 }, 
-                    borderRadius: '8px', 
-                    textTransform: 'none', 
-                    fontWeight: 'bold',
+                    // borderRadius: '8px', 
+                    // textTransform: 'none', 
+                    // fontWeight: 'bold',
                     // Button becomes full width on mobile for easier tapping
                     width: { xs: '100%', sm: 'auto' },
                     py: { xs: 1.2, sm: 1 },
