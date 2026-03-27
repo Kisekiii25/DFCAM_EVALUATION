@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react"; 
-import { dfcamTheme } from '../theme'; 
-
-
-import { 
-    FormControl, InputLabel, Select, MenuItem, 
-    Box, Alert, CircularProgress, Button, Typography, Paper, Grid
-} from '@mui/material';
-
-import RestartAltIcon from '@mui/icons-material/RestartAlt'; 
-    
-import { ThemeProvider } from '@mui/material/styles';
+import { useEffect, useState } from "react"; 
+import { dfcamTheme } from '../theme';     
 import TeacherCard from "../components/TeacherCard";
 import schoolLogo from "../assets/DFCAMlogo.png";
+import LoadingScreen from "../components/LoadingScreen";
+
+import { ThemeProvider } from '@mui/material/styles';
+import RestartAltIcon from '@mui/icons-material/RestartAlt'; 
+import { 
+    FormControl, InputLabel, Select, MenuItem, 
+    Box, Alert, Button, Typography, Paper, Grid
+} from '@mui/material';
+
 
 
 export default function Evaluation({ allData }) {
@@ -38,38 +37,9 @@ export default function Evaluation({ allData }) {
         localStorage.setItem('saved_section', selectedSection);
     }, [selectedCourse, selectedYear, selectedSection]);
 
-    //check to prevent crash if data isn't passed yet
-    const loadingQuotes = [
-        "Education is the most powerful weapon to change the world.",
-        "The influence of a great teacher can never be erased.",
-        "Quality is not an act, it is a habit.",
-        "Strive for excellence in every evaluation.",
-        "Your feedback today builds a better classroom tomorrow.",
-        "Honest evaluation is the first step toward excellence.",
-        "Self-doubt kills talent.",
-        "A person who never made a mistake never tried anything new.",
-        "Growth starts exactly where your comfort zone ends.",
-        "Loading... please wait while I tell the data to wake up.",
-        "Progress, not perfection.",
-        "The best project you will ever work on is YOU."
-    ];
-
     // LOADING WHILE FECHING IS LOADING
     if (!allData || allData.length === 0) {
-        const randomQuote = loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
-        return (
-            <ThemeProvider theme={dfcamTheme}>
-                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="calc(100vh - 130px)">
-                    <CircularProgress size={60} thickness={4} sx={{ color: 'primary.light' }} />
-                    <Typography variant="h6" sx={{ mt: 4, color: 'primary.light', fontStyle: 'italic', maxWidth: '500px' }}>
-                        "{randomQuote}"
-                    </Typography>
-                    <Typography sx={{ mt: 2, color: 'white' }}>
-                        Syncing faculty data...
-                    </Typography>
-                </Box>
-            </ThemeProvider>
-        );
+        return <LoadingScreen />;
     }
 
     // Get Unique Courses

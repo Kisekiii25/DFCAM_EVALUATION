@@ -1,6 +1,8 @@
-import { AppBar, Toolbar, Typography, Box, Container, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import schoolLogo from '../assets/DFCAMlogo.png';
+
+import { AppBar, Toolbar, Typography, Box, Container, useTheme } from '@mui/material';
+
 
 export default function Navbar({ settings }) {
     const theme = useTheme();
