@@ -36,7 +36,7 @@ export default function Home({ allData, settings }) {
         "The best project you will ever work on is YOU."
     ];
 
-    // Check for BOTH allData and settings to prevent crashes
+    // LOADING WHILE FECHING IS LOADING (LOADING THE SETTING AND ALLDATA)
     if (!allData || !settings) {
         const randomQuote = loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
 

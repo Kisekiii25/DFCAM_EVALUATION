@@ -25,19 +25,50 @@ export default function Evaluation({ allData }) {
         localStorage.getItem('saved_section') || ""
     );
 
+    const handleReset = () => {
+        localStorage.clear();
+        setSelectedCourse("");
+        setSelectedYear("");
+        setSelectedSection("");
+    };
+
     useEffect(() => {
         localStorage.setItem('saved_course', selectedCourse);
         localStorage.setItem('saved_year', selectedYear);
         localStorage.setItem('saved_section', selectedSection);
     }, [selectedCourse, selectedYear, selectedSection]);
 
-    //Add a check to prevent crash if data isn't passed yet
+    //check to prevent crash if data isn't passed yet
+    const loadingQuotes = [
+        "Education is the most powerful weapon to change the world.",
+        "The influence of a great teacher can never be erased.",
+        "Quality is not an act, it is a habit.",
+        "Strive for excellence in every evaluation.",
+        "Your feedback today builds a better classroom tomorrow.",
+        "Honest evaluation is the first step toward excellence.",
+        "Self-doubt kills talent.",
+        "A person who never made a mistake never tried anything new.",
+        "Growth starts exactly where your comfort zone ends.",
+        "Loading... please wait while I tell the data to wake up.",
+        "Progress, not perfection.",
+        "The best project you will ever work on is YOU."
+    ];
+
+    // LOADING WHILE FECHING IS LOADING
     if (!allData || allData.length === 0) {
+        const randomQuote = loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
         return (
-            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="calc(100vh - 130px)">
-                <CircularProgress />
-                <Typography sx={{ mt: 2, color: 'white' }}>Syncing faculty data...</Typography>
-            </Box>
+            <ThemeProvider theme={dfcamTheme}>
+                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="calc(100vh - 130px)">
+                    <CircularProgress size={60} thickness={4} sx={{ color: 'primary.light' }} />
+                    <Typography variant="h6" sx={{ mt: 4, color: 'primary.light', fontStyle: 'italic', maxWidth: '500px' }}>
+                        "{randomQuote}"
+                    </Typography>
+                    <Typography sx={{ mt: 2, color: 'white' }}>
+                        Syncing faculty data...
+                    </Typography>
+                </Box>
+            </ThemeProvider>
         );
     }
 
@@ -50,7 +81,6 @@ export default function Evaluation({ allData }) {
             .map(item => item.yearLevel || item.YearLevel)
     )].filter(Boolean).sort();
 
-
     // Get Unique Sections based on Course & Year
     const availableSections = [...new Set(
         allData.filter(item => 
@@ -60,19 +90,13 @@ export default function Evaluation({ allData }) {
     )].filter(Boolean).sort();
 
 
+
     // Final List of Teachers to display
     const filteredTeachers = allData.filter(t => 
         (t.course || t.Course) === selectedCourse && 
         (t.yearLevel || t.YearLevel) === selectedYear && 
         (t.section || t.Section) === selectedSection
     );
-
-    const handleReset = () => {
-        localStorage.clear();
-        setSelectedCourse("");
-        setSelectedYear("");
-        setSelectedSection("");
-    };
 
     return (
         <ThemeProvider theme={dfcamTheme}>
