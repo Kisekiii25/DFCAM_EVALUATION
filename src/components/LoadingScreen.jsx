@@ -12,8 +12,6 @@ const loadingQuotes = [
     "Honest evaluation is the first step toward excellence.",
     "Self-doubt kills talent.",
     "Growth starts exactly where your comfort zone ends.",
-    "Loading... please wait while I tell the data to wake up.",
-    "Progress, not perfection.",
     "The best project you will ever work on is YOU."
 ];
 

@@ -2,7 +2,6 @@
 
     export const dfcamTheme = createTheme({
         palette: {
-            // mode: 'dark',
             primary: {
                 main: '#0038a8', // DFCAM Official Blue
                 light: '#80D8FF', 

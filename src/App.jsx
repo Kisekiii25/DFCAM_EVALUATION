@@ -27,7 +27,6 @@ function App() {
         fetch(apiUrl)
             .then(res => res.json())
             .then(data => {
-                // Assuming your GAS returns { teachers: [...], settings: {...} }
                 setAllData(data.teachers);
                 setSettings(data.settings);
             })
