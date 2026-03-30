@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import schoolLogo from '../assets/DFCAMlogo.png';
+import schoolLogo from '../assets/DFCAM-logo.webp';
 
 import { AppBar, Toolbar, Typography, Box, Container, useTheme } from '@mui/material';
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"; 
 import { dfcamTheme } from '../theme';     
 import TeacherCard from "../components/TeacherCard";
-import schoolLogo from "../assets/DFCAMlogo.png";
+import schoolLogo from "../assets/DFCAM-logo.webp";
 import LoadingScreen from "../components/LoadingScreen";
 
 import { ThemeProvider } from '@mui/material/styles';
@@ -253,7 +253,7 @@ export default function Evaluation({ allData }) {
 
                     <Grid container spacing={2}>
                         {filteredTeachers.map((teacher, index) => (
-                            <Grid item xs={12} key={index} sx={{ display: 'flex', width: '100%' }}> 
+                            <Grid size={12} key={index} sx={{ display: 'flex', width: '100%' }}> 
                                 <TeacherCard {...teacher} />
                             </Grid>
                         ))}

@@ -71,6 +71,7 @@ export default function TeacherCard({ name, subject, image, formLink }) {
                 target="_blank"             
                 rel="noopener noreferrer"
                 href={formLink}
+                aria-label={`Evaluate ${name || 'Instructor'}`}
                 startIcon={<RateReviewIcon />} 
                 sx={{ 
                     ml: { xs: 0, sm: 2 }, 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import schoolLogo from '../assets/DFCAMlogo.png';
+import schoolLogo from '../assets/DFCAM-logo.webp';
 import LoadingScreen from '../components/LoadingScreen';
 
 import { 
@@ -130,6 +130,8 @@ export default function Home({ allData, settings }) {
                 onClose={handleClose} 
                 fullWidth
                 maxWidth="xs"
+                disableRestoreFocus
+                aria-labelledby="reminder-dialog-title"
                 slotProps={{
                     backdrop: {
                         sx: { backgroundColor: 'rgba(2, 6, 23, 0.7)' }
