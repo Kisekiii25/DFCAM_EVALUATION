@@ -4,12 +4,16 @@ import TeacherCard from "../components/TeacherCard";
 import schoolLogo from "../assets/DFCAM-logo.webp";
 import LoadingScreen from "../components/LoadingScreen";
 
+
 import { ThemeProvider } from '@mui/material/styles';
 import RestartAltIcon from '@mui/icons-material/RestartAlt'; 
+import { Fab, Zoom } from '@mui/material';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { 
     FormControl, InputLabel, Select, MenuItem, 
     Box, Alert, Button, Typography, Paper, Grid
 } from '@mui/material';
+
 
 
 
@@ -31,7 +35,30 @@ export default function Evaluation({ allData }) {
         setSelectedSection("");
     };
 
+    const [showScrollTop, setShowScrollTop] = useState(false);
     const resultsRef = useRef(null);
+
+
+    useEffect(() => {
+        const handleScroll = () => {
+            // Show button if user scrolled down more than 400px
+            if (window.scrollY > 400) {
+                setShowScrollTop(true);
+            } else {
+                setShowScrollTop(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
 
     useEffect(() => {
         if (selectedSection && resultsRef.current) {
@@ -274,6 +301,24 @@ export default function Evaluation({ allData }) {
                 </Box>
 
             </Box>
+
+            <Zoom in={showScrollTop}>
+                <Fab 
+                    onClick={scrollToTop}
+                    color="primary" 
+                    size="small" 
+                    aria-label="scroll back to top"
+                    sx={{ 
+                        position: 'fixed', 
+                        bottom: 32, 
+                        right: 32,
+                        bgcolor: 'primary.main',
+                        border: '1.5px solid',
+                    }}
+                >
+                    <KeyboardArrowUpIcon />
+                </Fab>
+            </Zoom>
         </ThemeProvider>
     );
 }
