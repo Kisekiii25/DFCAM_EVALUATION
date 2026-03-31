@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"; 
+import { useEffect, useState, useRef } from "react"; 
 import { dfcamTheme } from '../theme';     
 import TeacherCard from "../components/TeacherCard";
 import schoolLogo from "../assets/DFCAM-logo.webp";
@@ -30,6 +30,17 @@ export default function Evaluation({ allData }) {
         setSelectedYear("");
         setSelectedSection("");
     };
+
+    const resultsRef = useRef(null);
+
+    useEffect(() => {
+        if (selectedSection && resultsRef.current) {
+            resultsRef.current.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+    }, [selectedSection]);
 
     useEffect(() => {
         localStorage.setItem('saved_course', selectedCourse);
@@ -167,7 +178,9 @@ export default function Evaluation({ allData }) {
                 {/* ACTIVE SELECTION HEADER */}
                 {(selectedCourse || selectedYear || selectedSection) && (
                     <Box 
+                        ref={resultsRef}
                         sx={{ 
+                            scrollMarginTop: '80px',
                             mb: 3, 
                             position: 'sticky',
                             top: 72,
