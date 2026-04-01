@@ -116,7 +116,7 @@ export default function Evaluation({ allData }) {
             <Box sx={{ 
                 p: { xs: 2, md: 4 }, 
                 minHeight: '100vh', 
-                bgcolor: 'background.default',
+                bgcolor: 'background.default',  
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center' 
@@ -126,7 +126,7 @@ export default function Evaluation({ allData }) {
                 <Box sx={{ maxWidth: '800px', width: '100%', display: 'flex', mb: 1 }}>
                     <Button 
                         startIcon={<ArrowBackIcon />} 
-                        onClick={() => navigate(-1)}
+                        onClick={() => navigate("/")}
                         variant="text" 
                         sx={{ 
                             color: 'rgba(255,255,255,0.6)',
