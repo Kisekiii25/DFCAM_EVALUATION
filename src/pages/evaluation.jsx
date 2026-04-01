@@ -13,6 +13,8 @@ import {
     FormControl, InputLabel, Select, MenuItem, 
     Box, Alert, Button, Typography, Paper, Grid
 } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -34,6 +36,8 @@ export default function Evaluation({ allData }) {
         setSelectedYear("");
         setSelectedSection("");
     };
+
+    const navigate = useNavigate();
 
     const [showScrollTop, setShowScrollTop] = useState(false);
     const resultsRef = useRef(null);
@@ -117,7 +121,24 @@ export default function Evaluation({ allData }) {
                 flexDirection: 'column',
                 alignItems: 'center' 
             }}>
-                
+
+                {/* BACK TO HOME BTN */}
+                <Box sx={{ maxWidth: '800px', width: '100%', display: 'flex', mb: 1 }}>
+                    <Button 
+                        startIcon={<ArrowBackIcon />} 
+                        onClick={() => navigate(-1)}
+                        variant="text" 
+                        sx={{ 
+                            color: 'rgba(255,255,255,0.6)',
+                            '&:hover': { color: '#fff', bgcolor: 'transparent' },
+                            textTransform: 'none',
+                            fontSize: '0.9rem'
+                        }}
+                    >
+                        Back to Home
+                    </Button>
+                </Box>
+
                 {/*SCHOOL HEADER */}
                 <Paper elevation={6} sx={{ 
                     p: { xs: 1.5, sm: 3 },
