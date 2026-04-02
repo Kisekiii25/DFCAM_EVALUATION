@@ -68,7 +68,7 @@ function App() {
         return (
             <Box sx={{ 
                 // 1. ENSURE FULL COVERAGE
-                height: '100vh', 
+                height: '100dvh', 
                 width: '100vw',
                 display: 'flex', 
                 flexDirection: 'column',
