@@ -285,21 +285,53 @@ export default function Evaluation({ allData }) {
                         </Box>
                         
                         {/* The Note: Honest Evaluation */}
-                        <Typography 
-                            variant="caption" 
+                        <Box 
                             sx={{ 
-                                color: 'primary.light', // Use that nice light blue
-                                fontWeight: 600,
-                                letterSpacing: 0.5,
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 0.5,
-                                opacity: 0.9
+                                display: 'flex', 
+                                flexDirection: 'column', // Stacks items vertically
+                                alignItems: { xs: 'center', md: 'flex-start' }, // Centers on mobile, aligns left on desktop
                             }}
                         >
-                            <span style={{ fontSize: '1.1rem' }}>ⓘ</span> 
-                            Note: Please evaluate all your instructors honestly.
-                        </Typography>
+
+                            {/* Note: Grade Scale */}
+                            <Box 
+                                sx={{ 
+                                    bgcolor: 'rgba(37, 99, 235, 0.1)', 
+                                    color: '#60a5fa', 
+                                    alignSelf: 'center',
+                                    px: 2, 
+                                    py: 0.5, 
+                                    fontSize: '0.75rem', 
+                                    fontWeight: 600, 
+                                    border: '1px solid rgba(96, 165, 250, 0.2)',
+                                    display: 'inline-block',
+                                    width: 'fit-content',
+                                    borderRadius: '6px',
+                                    borderLeft: '4px solid'
+
+                                }}
+                            >
+                                5 is the highest grade and 1 is the lowest.
+                            </Box>
+
+                            {/* Second Note*/}
+                            <Typography 
+                                variant="caption" 
+                                sx={{ 
+                                    color: 'primary.light',
+                                    fontWeight: 600,
+                                    letterSpacing: 0.5,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: 0.5,
+                                    opacity: 0.9
+                                }}
+                            >
+                                <span style={{ fontSize: '1.1rem' }}>ⓘ</span> 
+                                Note: Please evaluate all your instructors honestly.
+                            </Typography>
+
+                        </Box>
                     </Box>
                 )}
 
