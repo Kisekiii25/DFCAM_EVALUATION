@@ -307,7 +307,9 @@ export default function Evaluation({ allData }) {
                                     display: 'inline-block',
                                     width: 'fit-content',
                                     borderRadius: '6px',
-                                    borderLeft: '4px solid'
+                                    borderLeft: '4px solid',
+                                    borderRight: '4px solid'
+
 
                                 }}
                             >
