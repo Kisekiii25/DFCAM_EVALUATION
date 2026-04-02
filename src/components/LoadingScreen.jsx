@@ -26,7 +26,7 @@ const LoadingScreen = () => {
                     flexDirection: 'column', 
                     justifyContent: 'center', 
                     alignItems: 'center', 
-                    minHeight: 'calc(100vh - 130px)', 
+                    minHeight: 'calc(100dvh - 130px)', 
                     bgcolor: '#0f172a', 
                     textAlign: 'center', 
                     p: 3 

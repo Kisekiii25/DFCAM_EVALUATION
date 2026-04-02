@@ -27,7 +27,7 @@ export default function Home({ allData, settings }) {
 
     return (
         <Box sx={{ 
-            height: 'calc(100vh - 82px)', 
+            minHeight: 'calc(100dvh - 82px)', 
             width: '100%',
             bgcolor: '#0f172a',
             backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('/hero-bg.jpg')`,
@@ -36,15 +36,16 @@ export default function Home({ allData, settings }) {
             display: 'flex',
             alignItems: 'center', 
             justifyContent: 'center',
-            overflow: 'hidden',
+            overflowY: 'auto',
+            
         }}>
             <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 4, md: 10 } }}> 
                 <Stack 
                     direction={{ xs: 'column', md: 'row' }} 
-                    spacing={{ xs: 4, md: 6 }} 
+                    spacing={{ xs: 3, md: 6 }} 
                     alignItems="center"
                     justifyContent="center"
-                    sx={{ minHeight: 'calc(100vh - 120px)' }}
+                    // sx={{ minHeight: 'calc(100vh - 120px)' }}
                 >
                     {/* LEFT SIDE: LOGO */}
                     <Box 
@@ -73,7 +74,8 @@ export default function Home({ allData, settings }) {
                             color: 'primary.light', 
                             fontWeight: 700, 
                             opacity: 0.8,
-                            fontSize: { xs: '0.65rem', md: '0.75rem' }
+                            fontSize: { xs: '0.65rem', md: '0.75rem' },
+                            display: 'block'
                         }}>
                             GUIDANCE AND COUNSELING SERVICES OFFICE
                         </Typography>
