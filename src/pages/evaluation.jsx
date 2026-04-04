@@ -320,7 +320,7 @@ export default function Evaluation({ allData }) {
                                         fontSize: '0.65rem', 
                                         opacity: 0.8,
                                         fontWeight: 500,
-                                        bgcolor: 'rgba(255, 255, 255, 0.05)', // Very subtle background
+                                        bgcolor: 'rgba(255, 255, 255, 0.05)', 
                                         px: 1,
                                         py: 0.2,
                                         borderRadius: '4px',
