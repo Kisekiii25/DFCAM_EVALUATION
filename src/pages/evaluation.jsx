@@ -317,19 +317,16 @@ export default function Evaluation({ allData }) {
                                 <Box 
                                     component="span" 
                                     sx={{ 
-                                        fontSize: '0.7rem', 
-                                        opacity: 0.7, 
-                                        fontWeight: 500,
-                                        bgcolor: 'rgba(255, 255, 255, 0.05)', // Very subtle background
-                                        px: 1,
-                                        py: 0.2,
-                                        borderRadius: '4px',
-                                        mt: 0.5,
-                                        color: 'text.secondary'
+                                       color: 'text.secondary', // Muted gray
+                                        fontSize: '0.65rem', 
+                                        opacity: 0.8,
+                                        fontStyle: 'italic',
+                                        mt: 0.5
                                     }}
                                 >
                                     (5 is the highest grade and 1 is the lowest)
                                 </Box>
+
                             </Typography>
                         </Box>
                     </Box>
