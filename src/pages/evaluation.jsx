@@ -288,28 +288,49 @@ export default function Evaluation({ allData }) {
                         <Box 
                             sx={{ 
                                 display: 'flex', 
-                                flexDirection: 'column', // Stacks items vertically
-                                alignItems: { xs: 'center', md: 'flex-start' }, // Centers on mobile, aligns left on desktop
+                                flexDirection: 'column', 
+                                alignItems: 'center', 
+                                textAlign: 'center',
+                                mt: 1
                             }}
                         >
-
-                            {/* Second Note*/}
                             <Typography 
                                 variant="caption" 
                                 sx={{ 
-                                    color: 'primary.light',
+                                    color: 'primary.light', 
                                     fontWeight: 600,
                                     letterSpacing: 0.5,
                                     display: 'flex',
+                                    flexDirection: 'column', 
                                     alignItems: 'center',
                                     gap: 0.5,
                                     opacity: 0.9
                                 }}
                             >
-                                <span style={{ fontSize: '1.1rem' }}>ⓘ</span> 
-                                Note: Please evaluate all your instructors honestly.
-                            </Typography>
+                                {/* Main Instruction */}
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                    <span style={{ fontSize: '1.1rem' }}>ⓘ</span> 
+                                    Note: Please evaluate all your instructors honestly.
+                                </Box>
 
+                                {/* ADDED: Grade Scale on Next Line */}
+                                <Box 
+                                    component="span" 
+                                    sx={{ 
+                                        fontSize: '0.7rem', 
+                                        opacity: 0.7, 
+                                        fontWeight: 500,
+                                        bgcolor: 'rgba(255, 255, 255, 0.05)', // Very subtle background
+                                        px: 1,
+                                        py: 0.2,
+                                        borderRadius: '4px',
+                                        mt: 0.5,
+                                        color: 'text.secondary'
+                                    }}
+                                >
+                                    (5 is the highest grade and 1 is the lowest)
+                                </Box>
+                            </Typography>
                         </Box>
                     </Box>
                 )}
@@ -334,55 +355,28 @@ export default function Evaluation({ allData }) {
 
             </Box>
 
+            {/* SCROLL TO TOP FAB */}
             <Zoom in={showScrollTop}>
-                <Box sx={{ 
-                    position: 'fixed', 
-                    bottom: 24, 
-                    right: 24, 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: 1.5, // Space between note and button
-                    zIndex: 1000 
-                }}>
-                      {/* Note: Grade Scale */}
-                            <Box 
-                                sx={{ 
-                                    bgcolor: '#0f172a', 
-                                    color: '#60a5fa', 
-                                    alignSelf: 'center',
-                                    px: 2, 
-                                    py: 0.5, 
-                                    fontSize: '0.75rem', 
-                                    fontWeight: 600, 
-                                    border: '1px solid rgba(96, 165, 250, 0.2)',
-                                    display: 'inline-block',
-                                    width: 'fit-content',
-                                    borderRadius: '6px',
-                                    borderRight: '4px solid',
-                                    borderLeft: '4px solid',
-                                    boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
-                                }}
-                            >
-                                5 is the highest grade and 1 is the lowest.
-                            </Box>
-
-                    {/* SCROLL TO TOP FAB */}
-                    <Fab 
-                        onClick={scrollToTop}
-                        color="primary" 
-                        size="small" 
-                        aria-label="scroll back to top"
-                        sx={{ 
-                            bgcolor: 'primary.main',
-                            border: '1.5px solid rgba(255,255,255,0.1)',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
-                            '&:hover': { bgcolor: 'primary.dark' }
-                        }}
-                    >
-                        <KeyboardArrowUpIcon />
-                    </Fab>
-                </Box>
-            </Zoom>
+                <Fab 
+                    onClick={scrollToTop}
+                    color="primary" 
+                    size="small" 
+                    aria-label="scroll back to top"
+                    sx={{ 
+                        position: 'fixed', 
+                        bottom: 32, 
+                        right: 32,
+                        bgcolor: 'primary.main',
+                        border: '1.5px solid rgba(255,255,255,0.1)',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                        zIndex: 1000,
+                        '&:hover': { bgcolor: 'primary.dark' }
+                    }}
+                >
+                    <KeyboardArrowUpIcon />
+                </Fab>
+            </Zoom> 
+            
         </ThemeProvider>
     );
 }
