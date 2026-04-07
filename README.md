@@ -15,5 +15,4 @@ A modern, web-based evaluation portal designed for **DFCAMPERS** and **IT-Schola
 * **Environment:** Windows / WSL (Ubuntu)
 
 ## 📊 Data Integrity Logic
-To ensure data accuracy, the system generates a **Unique Key** for every submission:
 If the system detects a duplicate key in the Google Sheet, it prevents the submission and highlights the conflict in **Red Fill** for the administrator to review.
