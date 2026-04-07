@@ -1,16 +1,19 @@
-# React + Vite
+# DFCAMCLP Faculty Evaluation System 🎓
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, web-based evaluation portal designed for **DFCAMPERS** and **IT-Scholars** to provide structured feedback for faculty members. This system was built to replace manual processes with a streamlined, digital-first approach.
 
-Currently, two official plugins are available:
+## 🚀 Key Features
+* **Dynamic Faculty Filtering:** Quickly locate teachers by Course, Year, and Section.
+* **Authorized Session Identity:** Custom "Student Identity" portal for **DFCAMPERS** (No login required).
+* **Admin Control:** Built-in "Site Availability" toggle to manage evaluation periods.
+* **Optimized UX:** Auto-scrolling results, "Quick Start" guide pop-ups, and full mobile responsiveness.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
+* **Frontend:** React.js (Vite)
+* **UI Framework:** Material UI (MUI)
+* **Backend:** Google Apps Script / Google Sheets API
+* **Environment:** Windows / WSL (Ubuntu)
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📊 Data Integrity Logic
+To ensure data accuracy, the system generates a **Unique Key** for every submission:
+If the system detects a duplicate key in the Google Sheet, it prevents the submission and highlights the conflict in **Red Fill** for the administrator to review.
